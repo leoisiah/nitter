@@ -193,6 +193,8 @@ proc renderReply(tweet: Tweet): VNode =
     for i, u in tweet.reply:
       if i > 0: text " "
       a(href=("/" & u)): text "@" & u
+    text " "
+    span(class="replying-to-id"): text $(tweet.replyId)
 
 proc renderAttribution(user: User; prefs: Prefs): VNode =
   buildHtml(a(class="attribution", href=("/" & user.username))):
@@ -304,8 +306,9 @@ proc renderTweet*(tweet: Tweet; prefs: Prefs; path: string; class=""; index=0;
       var views = ""
       renderHeader(tweet, retweet, pinned, prefs)
 
-      if not afterTweet and index == 0 and tweet.reply.len > 0 and
-         (tweet.reply.len > 1 or tweet.reply[0] != tweet.user.username):
+      if not afterTweet and index == 0 and tweet.reply.len > 0:
+       #and
+         #(tweet.reply.len > 1 or tweet.reply[0] != tweet.user.username):
         renderReply(tweet)
 
       var tweetClass = "tweet-content media-body"

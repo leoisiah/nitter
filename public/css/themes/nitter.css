@@ -1,3 +1,7 @@
 body {
     /* uses default values */
 }
+
+.replying-to-id {
+    display: none;
+}

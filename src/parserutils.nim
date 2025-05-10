@@ -286,8 +286,8 @@ proc expandTextEntities(tweet: Tweet; entities: JsonNode; text: string; textSlic
           url: "/" & name, display: mention["name"].getStr)
         if idx > -1 and name != replyTo:
           tweet.reply.delete idx
-      elif idx == -1 and tweet.replyId != 0:
-        tweet.reply.add name
+      #elif idx == -1 and tweet.replyId != 0:
+        #tweet.reply.add name                
 
   replacements.deduplicate
   replacements.sort(cmp)
